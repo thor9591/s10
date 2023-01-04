@@ -1,0 +1,83 @@
+//s10
+//.c
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct emp
+{
+int n,n1;
+char c[100];
+}EMP;
+void sort(EMP a[] ,int i);
+void main()
+{
+FILE *s;
+int i = 0 , j ;
+EMP a[100];
+s = fopen("employee.txt" , "r");
+if( s == NULL)
+{
+printf("File Dosen't Exist");
+// exit(0);
+}
+else
+{
+while(!feof(s))
+{
+fscanf(s ,"%d%s%d" , &a[i].n , a[i].c , &a[i].n1);
+i++;
+}
+}
+printf("\n\nBefore Sorting\n");
+for(j = 0 ; j < i -1 ; j++)
+{
+printf("%d %s %d",a[j].n,a[j].c,a[j].n1);
+printf("\n");
+}
+sort(a,i);
+}
+void sort(EMP a[] ,int i)
+{
+int p , j;
+EMP s;
+for(p = 1 ; p < i ; p++)
+{
+for(j = 0 ; j <= i -p -1 ; j++)
+{
+if(strcmp(a[j].c,a[j + 1].c) > 0)
+{
+s = a[j];
+a[j] = a[j + 1];
+a[j+1] = s;
+}
+}
+}
+printf("\n\nAfter Sorting\n");
+for(j = 0 ; j < i ; j++) {
+printf("%d %s %d",a[j].n,a[j].c,a[j].n1);
+printf("\n");
+}
+}
+
+
+//cc filename.h
+//cc filename.c
+//  ./a.out
+
+// Run insert.c file on compiler 
+// File is created as employee.txt at the same location where your insert.c is exist. 
+// Open this employee.txt file and write name of employee.
+//Suresh
+//Ajay
+//Danish
+//Ramesh
+// After this save and close that file.
+// Again Run your insert.c file on compiler.
+// Then open your employee.txt and see the output as the ages are sorted by the insertion sort 
+
+//Output: 
+//Ajay
+//Chetali
+//Danish
+//Priya
+//Ramesh
+//Suresh
